@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-
+    'proyectos_api.apps.ProyectosApiConfig',
+    'usuarios_api.apps.UsuariosApiConfig'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,7 @@ DATABASES = {
         },
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'Elperri2023.',
         'HOST': 'localhost',
         'PORT': '5432'
     }
