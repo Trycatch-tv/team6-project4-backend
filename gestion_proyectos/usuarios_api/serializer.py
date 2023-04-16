@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from gestion_proyectos.usuarios_api.models import Usuario
+from usuarios_api.models import Usuario
 
 
-class UsuarioSerializer(serializers.Serializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('id', 'nombre', 'apellido', 'email', 'password', 'fecha_creacion', 'fk_rol')
+        fields = ('id','nombre', 'correo', 'clave', 'fecha_creacion') # , 'fk_rol'

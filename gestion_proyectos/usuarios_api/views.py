@@ -1,21 +1,22 @@
 import http
-
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from rest_framework.response import Response
 
-from gestion_proyectos.usuarios_api.models import Usuario
-from gestion_proyectos.usuarios_api.serializer import UsuarioSerializer
+from usuarios_api.models import Usuario
+from usuarios_api.serializer import UsuarioSerializer
 
 
 @api_view(['GET'])
-def listaProyectos(request):
+def lista_usuarios(request):
     try:
         usuarios = Usuario.objects.all()
         usuarios_serializer = UsuarioSerializer(usuarios, many=True)
-        return JsonResponse(usuarios_serializer.data, safe=False)
+        return Response(usuarios_serializer.data, status=status.HTTP_200_OK)
     except Exception as error:
-        return http.HTTPStatus.INTERNAL_SERVER_ERROR
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
@@ -25,10 +26,10 @@ def crearUsuario(request):
         usuario_serializer = UsuarioSerializer(data=usuario_data)
         if usuario_serializer.is_valid():
             usuario_serializer.save()
-            return JsonResponse("Usuario creado correctamente", safe=False)
-        return JsonResponse("Error al crear usuario", safe=False)
+            return JsonResponse({"mensaje": "Usuario creado correctamente"}, status=status.HTTP_201_CREATED)
+        return JsonResponse({"mensaje": "Error al crear usuario", "errores": usuario_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as error:
-        return http.HTTPStatus.INTERNAL_SERVER_ERROR
+        return JsonResponse({"mensaje": "Error al crear usuario", "errores": str(error)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['PUT'])
