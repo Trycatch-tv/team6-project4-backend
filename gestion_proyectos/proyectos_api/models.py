@@ -1,6 +1,6 @@
 from django.db import models
 
-from gestion_proyectos.usuarios_api.models import Usuario
+from usuarios_api.models import Usuario
 
 
 # Create your models here.
@@ -28,7 +28,7 @@ class Proyecto(models.Model):
         return self.nombre
 
     class Meta:
-        db_table = 'proyecto',
+        db_table = 'proyecto'
         unique_together = ('nombre', 'fk_usuario')
 
 
