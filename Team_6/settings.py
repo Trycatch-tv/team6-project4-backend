@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'proyectos_api',
     'usuarios_api',
     'tareas_api',
+    'autenticar_api',
     'rest_framework',
 ]
 
