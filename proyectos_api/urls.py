@@ -1,12 +1,10 @@
 from rest_framework import routers
 from .api import ProyectoViewSet, EstadoViewSet, AsignarProyectoViewSet
 from tareas_api.api import PrioridadViewSet,TamanioViewSet,TareaViewSet,AsignacionTareasViewSet
-from usuarios_api.api import UsuarioViewSet
 from autenticar_api.api import AutenticarViewSet
 router=routers.DefaultRouter()
 
-router.register('api/Autenticar',AutenticarViewSet,'Autenticar')
-router.register('api/Usuarios',UsuarioViewSet,'Usuarios')
+router.register('api/Usuarios',AutenticarViewSet,'Usuarios')
 router.register('api/Proyectos',ProyectoViewSet,'Proyectos')
 router.register('api/Proyectos_Estado',EstadoViewSet,'Proyectos_Estado')
 router.register('api/Proyectos_Asignacion',AsignarProyectoViewSet,'Proyectos_Asignacion')

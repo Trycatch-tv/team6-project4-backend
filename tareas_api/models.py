@@ -1,5 +1,5 @@
 from django.db import models
-from usuarios_api.models import Usuario
+from django.contrib.auth.models import User
 from proyectos_api.models import Estado,Proyecto
 
 # Create your models here.
@@ -49,7 +49,7 @@ class AsignacionTareas(models.Model):
     id = models.AutoField(primary_key=True)
     fecha_asignacion = models.DateTimeField(auto_now_add=True)
     fk_tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE)
-    fk_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fk_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.fk_tarea.nombre

@@ -1,5 +1,5 @@
 from django.db import models
-from usuarios_api.models import Usuario
+from django.contrib.auth.models import User
 
 # Create your models here
 
@@ -21,7 +21,7 @@ class Proyecto(models.Model):
     descripcion = models.CharField(max_length=250)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fk_usuario = models.ForeignKey(
-        Usuario, related_name='estados', on_delete=models.CASCADE)
+        User, related_name='estados', on_delete=models.CASCADE)
     fk_estado = models.ForeignKey(Estado, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Proyecto(models.Model):
 class AsignarProyecto(models.Model):
     id = models.AutoField(primary_key=True)
     fk_proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
-    fk_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fk_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'asignar_proyecto'
