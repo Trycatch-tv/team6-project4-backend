@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-from corsheaders.defaults import default_headers
 
-CORS_ALLOW_HEADERS = list(default_headers)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +36,17 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 CORS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
